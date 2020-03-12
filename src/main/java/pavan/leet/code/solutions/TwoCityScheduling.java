@@ -18,31 +18,31 @@ public class TwoCityScheduling {
 
     private List<Integer> getMinimumCostsPerCity(Map<Integer, Map<Integer, Integer>> costPerPersonForCities, int numberOfPeopleInEachCity) {
         List<Integer> cost = new ArrayList<>();
-        Set<Integer> cityToBeRemoved = new HashSet<>();
+        Map<Integer, Integer> citiesToBeRemoved = new HashMap<>();
         while (cost.size() < (2 * numberOfPeopleInEachCity)) {
             for (Map.Entry<Integer, Map<Integer, Integer>> perCityCosts : costPerPersonForCities.entrySet()) {
-                if (cityToBeRemoved.isEmpty()) {
+                if (citiesToBeRemoved.isEmpty()) {
                     Integer minimumCostCity = getMinimumCostCityForPerson((Map) perCityCosts.getValue());
-                    addCostAndRemoveCity(numberOfPeopleInEachCity, cost, cityToBeRemoved, (Map) perCityCosts.getValue(), minimumCostCity);
+                    addCostAndRemoveCity(cost, citiesToBeRemoved, (Map) perCityCosts.getValue(), minimumCostCity);
                 } else {
                     Map<Integer, Integer> perCityCostsForEachPerson = (Map) perCityCosts.getValue();
-                    for (int city : cityToBeRemoved) {
-                        perCityCostsForEachPerson.remove(city);
+                    for (Map.Entry<Integer, Integer> citiesAndVisited : citiesToBeRemoved.entrySet()) {
+                        if (citiesAndVisited.getValue() % numberOfPeopleInEachCity == 0) {
+                            perCityCostsForEachPerson.remove(citiesAndVisited.getKey());
+                        }
                     }
                     Integer minimumCostCity = getMinimumCostCityForPerson(perCityCostsForEachPerson);
-                    addCostAndRemoveCity(numberOfPeopleInEachCity, cost, cityToBeRemoved, perCityCostsForEachPerson, minimumCostCity);
+                    addCostAndRemoveCity(cost, citiesToBeRemoved, perCityCostsForEachPerson, minimumCostCity);
                 }
             }
         }
         return cost;
     }
 
-    private void addCostAndRemoveCity(int numberOfPeopleInEachCity, List<Integer> cost, Set<Integer> cityToBeRemoved, Map<Integer, Integer> perCityCostsForEachPerson, Integer minimumCostCity) {
+    private void addCostAndRemoveCity(List<Integer> cost, Map<Integer, Integer> citiesToBeRemoved, Map<Integer, Integer> perCityCostsForEachPerson, Integer minimumCostCity) {
         cost.add(perCityCostsForEachPerson.get(minimumCostCity));
         perCityCostsForEachPerson.remove(minimumCostCity);
-        if (cost.size() % numberOfPeopleInEachCity == 0 && !cityToBeRemoved.contains(minimumCostCity)) {
-            cityToBeRemoved.add(minimumCostCity);
-        }
+        citiesToBeRemoved.merge(minimumCostCity, 1, (a, b) -> a + b);
     }
 
     private Integer getMinimumCostCityForPerson(Map<Integer, Integer> perCityCostsForEachPerson) {
