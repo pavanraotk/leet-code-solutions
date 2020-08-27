@@ -24,7 +24,7 @@ public class TwoCitySchedulingTest {
     public void finalTest() {
         TwoCityScheduling twoCityScheduling = new TwoCityScheduling();
         int[][] costs = new int[][]{{10,5},{20,30},{1,3},{4,40}};
-        assertThat(32).isEqualTo(twoCityScheduling.twoCitySchedCost(costs));
+        assertThat(66).isEqualTo(twoCityScheduling.twoCitySchedCost(costs));
     }
 
 }

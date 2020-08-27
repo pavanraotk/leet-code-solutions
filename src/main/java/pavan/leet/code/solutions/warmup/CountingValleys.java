@@ -1,4 +1,4 @@
-package pavan.leet.code.solutions;
+package pavan.leet.code.solutions.warmup;
 
 public class CountingValleys {
 
