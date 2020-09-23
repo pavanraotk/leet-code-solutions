@@ -1,6 +1,6 @@
 package pavan.leet.code.solutions.warmup;
 
-public class CountingValleys {
+class CountingValleys {
 
     static int countingValleys(int n, String s) {
 

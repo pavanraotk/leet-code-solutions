@@ -1,6 +1,6 @@
 package pavan.leet.code.solutions.arrays;
 
-public class HourGlass {
+class HourGlass {
 
     static int hourglassSum(int[][] arr) {
         Integer sum = null;
@@ -15,7 +15,11 @@ public class HourGlass {
                 }
             }
         }
-        return sum;
+        if (sum != null) {
+            return sum;
+        } else {
+            return -1;
+        }
     }
 
     private static int getSum(int i, int j, int[][] arr) {

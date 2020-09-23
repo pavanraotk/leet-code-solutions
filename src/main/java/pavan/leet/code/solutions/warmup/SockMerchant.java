@@ -3,7 +3,7 @@ package pavan.leet.code.solutions.warmup;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SockMerchant {
+class SockMerchant {
 
     static int sockMerchant(int n, int[] ar) {
         Map<Integer, Integer> sockCount = new HashMap<>();

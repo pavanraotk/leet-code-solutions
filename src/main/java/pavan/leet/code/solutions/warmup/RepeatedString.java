@@ -1,6 +1,6 @@
 package pavan.leet.code.solutions.warmup;
 
-public class RepeatedString {
+class RepeatedString {
 
     static long repeatedString(String s, long n) {
         if (s.matches("^[a]*$")) {

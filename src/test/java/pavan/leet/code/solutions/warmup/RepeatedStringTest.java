@@ -1,14 +1,15 @@
 package pavan.leet.code.solutions.warmup;
 
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class RepeatedStringTest {
+class RepeatedStringTest {
 
     @Test
-    public void testRepeatedString() {
+    void testRepeatedString() {
         assertEquals(2, RepeatedString.repeatedString("ababa", 3));
         assertEquals(4, RepeatedString.repeatedString("abcac", 10));
         assertEquals(7, RepeatedString.repeatedString("aba", 10));

@@ -2,9 +2,9 @@ package pavan.leet.code.solutions;
 
 import java.util.*;
 
-public class TwoCityScheduling {
+class TwoCityScheduling {
 
-    public int twoCitySchedCost(int[][] costs) {
+    int twoCitySchedCost(int[][] costs) {
         int numberOfPeopleInEachCity = getMinimumNumberOfPeopleInEachCity(costs);
         Map<Integer, Map<Integer, Integer>> costPerPersonForCities = createMapForCosts(costs);
         List<Integer> minimumCostsPerPerson = getMinimumCostsPerCity(costPerPersonForCities, numberOfPeopleInEachCity);
@@ -22,10 +22,10 @@ public class TwoCityScheduling {
         while (cost.size() < (2 * numberOfPeopleInEachCity)) {
             for (Map.Entry<Integer, Map<Integer, Integer>> perCityCosts : costPerPersonForCities.entrySet()) {
                 if (citiesToBeRemoved.isEmpty()) {
-                    Integer minimumCostCity = getMinimumCostCityForPerson((Map) perCityCosts.getValue());
-                    addCostAndRemoveCity(cost, citiesToBeRemoved, (Map) perCityCosts.getValue(), minimumCostCity);
+                    Integer minimumCostCity = getMinimumCostCityForPerson(perCityCosts.getValue());
+                    addCostAndRemoveCity(cost, citiesToBeRemoved, perCityCosts.getValue(), minimumCostCity);
                 } else {
-                    Map<Integer, Integer> perCityCostsForEachPerson = (Map) perCityCosts.getValue();
+                    Map<Integer, Integer> perCityCostsForEachPerson = perCityCosts.getValue();
                     for (Map.Entry<Integer, Integer> citiesAndVisited : citiesToBeRemoved.entrySet()) {
                         if (citiesAndVisited.getValue() % numberOfPeopleInEachCity == 0) {
                             perCityCostsForEachPerson.remove(citiesAndVisited.getKey());

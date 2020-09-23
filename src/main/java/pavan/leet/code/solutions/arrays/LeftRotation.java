@@ -1,6 +1,6 @@
 package pavan.leet.code.solutions.arrays;
 
-public class LeftRotation {
+class LeftRotation {
 
     static int[] rotLeft(int[] a, int d) {
 

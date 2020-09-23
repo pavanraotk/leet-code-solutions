@@ -1,6 +1,6 @@
 package pavan.leet.code.solutions.warmup;
 
-public class JumpingClouds {
+class JumpingClouds {
 
     static int jumpingOnClouds(int[] c) {
         int numberOfJumps = 0;
